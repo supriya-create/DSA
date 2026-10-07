@@ -24,6 +24,31 @@ class heap{
             }
         }
     }
+    //TC = O(log n)
+
+    void deletefromheap(){
+        if(size==0){
+            cout<<"Nothing to delete";
+        }
+        arr[1] = arr[size];
+        size--;
+
+        int i = 1;
+        while(i<size){
+            int leftindex = 2*i;
+            int rightindex = 2*i+1;
+
+            if(leftindex<size && arr[i]<arr[leftindex]){
+                swap(arr[i], arr[leftindex]);
+                i = leftindex;
+            }else if(rightindex<size && arr[i]<arr[rightindex]){
+                swap(arr[i], arr[rightindex]);
+                i = rightindex;
+            }else{
+                return;
+            }
+        }
+    }
 
     void print(){
         for(int i=1;i<=size;i++){
@@ -41,5 +66,10 @@ class heap{
         h.insert(25);
         h.insert(10);
         h.print();
+
+        h.deletefromheap();
+
+        h.print();
         return 0;
     }
+
